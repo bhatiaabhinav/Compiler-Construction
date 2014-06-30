@@ -1,0 +1,91 @@
+<mainFunction> -> MAIN SQO SQC <stmtsAndFunctionDefs> END SEMICOLON .
+<stmtsAndFunctionDefs> -> <stmtOrFunctionDef> <stmtsAndFunctionDefsOtherPart> .
+<stmtsAndFunctionDefsOtherPart> -> <stmtsAndFunctionDefs> .
+<stmtsAndFunctionDefsOtherPart> -> e .
+<stmtOrFunctionDef> -> <stmt> .
+<stmtOrFunctionDef> -> <functionDef> .
+<stmt> -> <declarationStmt> .
+<stmt> -> <assignmentStmt_type1> .
+<stmt> -> <assignmentStmt_type2> .
+<stmt> -> <ifStmt> .
+<stmt> -> <ioStmt> .
+<stmt> -> <funCallStmt> SEMICOLON .
+<functionDef> -> FUNCTION SQO <parameter_list> SQC ASSIGNOP FUNID SQO <parameter_list> SQC <stmtsAndFunctionDefs> END SEMICOLON .
+<parameter_list> -> e .
+<parameter_list> -> <concrete_parameter_list> .
+<concrete_parameter_list> -> <type> ID <remainingList> .
+<type> -> INT .
+<type> -> REAL .
+<type> -> STRING .
+<type> -> MATRIX .
+<remainingList> -> COMMA <concrete_parameter_list> .
+<remainingList> -> e .
+<declarationStmt> -> <type> <var_list> SEMICOLON .
+<var_list> -> ID <more_ids> .
+<more_ids> -> COMMA <var_list> .
+<more_ids> -> e .
+<assignmentStmt_type1> -> <leftHandSide_singleVar> ASSIGNOP <rightHandSide_type1> SEMICOLON .
+<assignmentStmt_type2> -> <leftHandSide_listVar> ASSIGNOP <rightHandSide_type2> SEMICOLON .
+<leftHandSide_singleVar> -> ID .
+<leftHandSide_listVar> -> SQO <var_list> SQC .
+<rightHandSide_type1> -> <arithmeticExpression> .
+<rightHandSide_type1> -> <sizeExpression> .
+<rightHandSide_type1> -> <funCallStmt> .
+<rightHandSide_type2> -> <sizeExpression> .
+<rightHandSide_type2> -> <funCallStmt> . 
+<sizeExpression> -> SIZE ID .
+<ifStmt> -> IF OP <booleanExpression> CL <ifBody> <elsePart> .
+<elsePart> -> ELSE <elseBody> ENDIF SEMICOLON .
+<ifBody> -> <stmt> <otherStmts> .
+<elseBody> -> <stmt> <otherStmts> .
+<elsePart> -> ENDIF SEMICOLON .
+<otherStmts> -> <stmt> <otherStmts> .
+<otherStmts> -> e .
+<ioStmt> -> READ OP ID CL SEMICOLON .
+<ioStmt> -> PRINT OP ID CL SEMICOLON .
+<funCallStmt> -> FUNID OP <inputParameterList> CL .
+<inputParameterList> -> <var> <listVar> .
+<inputParameterList> -> e .
+<listVar> -> COMMA <inputParameterList> .
+<listVar> -> e .
+<arithmeticExpression> -> <arithmeticTerm> <arithmeticExpressionOtherPart> .
+<arithmeticExpressionOtherPart> -> <operator_lowPrecedence> <arithmeticExpression> .
+<arithmeticExpressionOtherPart> -> e .
+<arithmeticTerm> -> <factor> <arithmeticTermOtherPart> .
+<arithmeticTermOtherPart> -> <operator_highPrecedence> <arithmeticTerm> .
+<arithmeticTermOtherPart> -> e .
+<factor> -> OP <arithmeticExpression> CL .
+<factor> -> <var> .
+<operator_lowPrecedence> -> PLUS .
+<operator_lowPrecedence> -> MINUS .
+<operator_highPrecedence> -> MUL .
+<operator_highPrecedence> -> DIV .
+<booleanExpression> -> OP <booleanExpression> CL <logicalOp> OP <booleanExpression> CL .
+<booleanExpression> -> <constrainedVars> <relationalOp> <constrainedVars> .
+<constrainedVars> -> <ID_or_matrixElement> .
+<constrainedVars> -> NUM .
+<constrainedVars> -> RNUM .
+<var> -> <ID_or_matrixElement> .
+<var> -> NUM .
+<var> -> RNUM .
+<ID_or_matrixElement> -> ID <otherMatrixElementPart> .
+<var> -> STR .
+<var> -> <matrix> .
+<matrix> -> SQO <rows> SQC .
+<rows> -> <row> <moreRows> .
+<moreRows> -> SEMICOLON <rows> .
+<moreRows> -> e .
+<row> -> NUM <remainingColElements> .
+<remainingColElements> -> COMMA NUM <remainingColElements> .
+<remainingColElements> -> e .
+<otherMatrixElementPart> -> SQO NUM COMMA NUM SQC .
+<otherMatrixElementPart> -> e .
+<logicalOp> -> AND .
+<logicalOp> -> OR .
+<booleanExpression> -> NOT OP <booleanExpression> CL .
+<relationalOp> -> LT .
+<relationalOp> -> LE .
+<relationalOp> -> EQ .
+<relationalOp> -> GT .
+<relationalOp> -> GE .
+<relationalOp> -> NE .

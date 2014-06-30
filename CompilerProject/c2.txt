@@ -1,0 +1,26 @@
+#Code generation testcase
+_main[]
+	matrix identity;
+	identity = [1,0,0;0,1,0;0,0,1] ;
+	#Also experiment your result with
+	#identity = [0,1,0;0,1,0;0,0,1] ;
+	int isIdentityMat;
+	int a,b,c;
+	a =identity[1,1];
+	b = identity[2,2];
+	c = identitity[3,3];
+	isIdentityMat =0;
+	if ((a==1).and.((b==1).and.(c==1)))
+		if((identity[1,2]==0).and.(identity[1,3]==0))
+			if((identity[2,1]==0).and.(identity[2,3]==0))
+				if((identity[3,1]==0).and.(identity[3,2]==0))
+					isIdentityMat = 1;
+				endif;
+			endif;
+		endif;
+	endif;
+	print(isIdentityMat);
+end;
+# Your code generator must generate the equivalent code in file code.asm using the ISA of MASM6.1 simulator.
+# Execute the file code.asm in MASM and print value as 1 for identity matrix
+#Challenge here is to construct the run time environment fixing the logical addresses for the matrix elements and other variables. Use off set information from the symbol table to construct the above and use that in the code generation.

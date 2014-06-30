@@ -1,0 +1,20 @@
+_main[]
+	matrix mat1, mat2;
+	matrix m;
+	int a,b,c,d;
+	mat1 = [1,2, 3; 4, 5, 6; 6, 7, 8];
+	mat2 = [6, 1, 10; 6, 10, 0];
+	[a,b] = @mat1;
+	[c,d] = @mat2;
+	m = mat1 + mat2;
+	print(a);
+	print(b);
+	print(c);
+	print(d);
+end;
+# semantic errors
+# line 9: matrix addition is between matrices of incompatible sizes.
+# you can also use the same test case to print the sizes of the matrices
+# mat1 and mat2. Remember that you populate the symbol table with type info
+# for variables mat1, mat2 and m while traversing sub trees corresponding 
+# to lines 2 and 3 and 5 and 6.

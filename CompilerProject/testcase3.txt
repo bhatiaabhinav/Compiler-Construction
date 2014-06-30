@@ -1,0 +1,8 @@
+_main[]
+	int a;
+	a = 5;
+	a = a + b;
+	print(a);
+end;
+# semantic errors
+# line 4: variable b is not declared

@@ -1,0 +1,11 @@
+int INT
+real REAL
+string STRING
+matrix MATRIX
+if IF
+else ELSE
+endif ENDIF 
+read READ
+print PRINT
+end END
+function FUNCTION

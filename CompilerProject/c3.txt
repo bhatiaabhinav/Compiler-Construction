@@ -1,0 +1,33 @@
+_main[]
+	matrix mat1, mat2;
+	matrix m;
+	int a,b,c,d;
+	mat1 = [1,2, 3; 4, 5, 6; 6, 7, 8];
+	mat2 = [6, 1, 10;0,12,9; 6, 10, 0];
+	[a,b] = @mat1;
+	[c,d] = @mat2;
+	m = mat1 + mat2;
+	print(a);
+	print(b);
+	print(c);
+	print(d);
+	print(m);
+end;
+
+#Above code is syntactically and semantically correct
+#Your compiler must have equivalent template for print(m) 
+#to print all matrix elements row wise.
+# The expected answer for the above is
+# 3 
+# 3 
+# 3 
+# 3
+# 7
+# 3
+# 13
+# 4
+# 17
+# 15
+# 12
+# 17
+# 8

@@ -1,0 +1,37 @@
+_main[]
+	int a, g,h,x;
+	real b,z;
+	matrix s;
+	int u,v;	
+	mat1 = [1,2, 3; 4, 5, 6; 6, 7, 8];
+	s = "abcd";
+	a = 2 + 5;
+	b = (a-4)*(3-1);
+	g = 10;
+	h = 9;
+	u = 12;
+	read(v);
+	function [int sum, int diff]= _calculator[int c]
+		sum = c + b;
+		diff = c - a;
+	end;
+	z = ((a -g) *(h+u))+((13-a)*(u+g));
+	g = ((a -g) *(h+u))-((10+a)*(u+g));
+	if(g+2)
+		x = 5;
+	else
+		x = 10;
+	endif;
+	if(g<2)
+		x = 15;
+	else
+		x = 20;
+	endif;
+end;
+
+#Semantic errors
+#line 7: type mismatch errors
+#line 9: type mismatch error
+#line 15: type mismatch error
+#line 18: type mismatch error
+#line 20: type mismatch error

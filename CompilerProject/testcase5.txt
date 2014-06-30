@@ -1,0 +1,46 @@
+_main[]
+	int a,b;
+	a = 3;
+	b = 5;
+	function [int sum, int diff, int prod]= _calculator[int c, int d]
+		sum = c + d;
+		diff = c*d;
+		diff = c - d;
+	end;
+	
+	#computes the sum of squares of a, b and c 
+	function [int x] = _sumOfSquares[int a, int b, int c] 
+	    int p,q,r; 
+
+	    function [int s] = _square[int u] 
+	         s = u*u; 
+	    end; 
+	    #function _square end here
+
+	    function [real u] = _anotherFunction[int d]
+	    	u = p + q + r ;
+            end;
+	    # function _anotherFunction ends here
+
+	    p = _square(a); 
+	    q = _square(b); 
+            r = _square(c); 
+	    x = _anotherFunction(2,3); 
+	end;
+	#function _sumOfSquares ends here
+	int  p;
+	real d;
+	[s, d, p] = _calculator(23,10.23);
+	p = _sumOfSquares(1,2,3);
+	d = _sumOfSquares(4,5,6);
+end;
+
+#Semantic errors
+# line 9: output parameter prod is not assigned any value throuout the function definition (equivalent to return in C)
+# line 12 : input parameters a and b are redeclared (as variables in the scope of main are visible in all nested functions. Note here that the variable c does not clash as both declarations fall in different scope.
+# Line 21 does not have any error as variables p,q,r are visible in the scope of function _anotherFunction
+# line 28: number of input parameters in function call to function _anotherFunction does not match with the number of formal input parameters 
+# line 31: No redeclaration of variable p hence no semantic error
+# line 33: variable s not declared
+# line 33: type of actual and formal input parameters do not match
+# line 35: type mismatch

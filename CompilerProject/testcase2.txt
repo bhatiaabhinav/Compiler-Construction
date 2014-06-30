@@ -1,0 +1,22 @@
+_main[]
+	string str1, str2;
+	int str1;
+	str1 = "eradicate";
+	blankSTR = "  ";
+	str2 = "plagiarism";
+	function [string s]= _concatenate[string a, string a2]
+		str1 = a1 + a2;
+	end;
+	ccSubmission = _concatenate(str1, blankSTR);
+	ccSubmission = _concatenate(ccSubmission, str2);
+	string ccSubmission;
+end;
+#Semantic errors
+#line 3 : The variable str1 is declared more than once
+#line 5 : Variable blankSTR is not declared
+#line 8 : Variable a1 is not declared.
+#         Note that str1 is visible in the function scope of _concatenate
+#line 10: Variable ccSubmission is not declared 
+#          (even though it is declared at line 12 but semantically a variable should be declared before its use)
+
+

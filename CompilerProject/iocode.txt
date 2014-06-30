@@ -1,0 +1,220 @@
+copy_from_tempStr proc
+	;pop di
+	pusha 
+	mov di,strAddress
+	lea si,tempStr
+	mov bx,0
+nextItr:
+	mov cx,[si]
+	mov [di],cx
+	inc bx
+	inc di
+	inc si
+	cmp bx,20
+	jne nextItr
+	popa
+	ret
+endp
+
+copyString proc
+	pusha
+	mov si,strAddress
+	mov di,destStrAddress
+	mov bx,0
+nextIter:
+	mov cx,[si]
+	mov [di],cx
+	inc si
+	inc di
+	inc bx
+	cmp bx,20
+	jne nextIter
+	popa
+	ret
+endp
+
+printString proc
+	mov si,strAddress
+	mov dx,si
+	mov ah,09h
+	int 21h
+	ret
+endp
+
+strConcat proc
+    pusha
+    lea si,tempStr2
+    lea di,tempStr
+    mov bx,0
+newIter:
+    cmp [si],'$'
+    je concatNext
+
+    mov cx,[si]
+    mov [di],cx
+    inc si
+    inc di
+    inc bx
+    cmp bx,21
+    jne newIter
+    popa
+    ret 
+concatNext:
+    lea si,tempStr3
+nxtItr:
+    cmp [si],'$'
+    je concatLastDollar
+    cmp bx,20
+    je concatLastDollar
+    mov cx,[si]
+    mov [di],cx
+    inc si
+    inc di
+    inc bx
+    jmp nxtItr
+concatLastDollar:
+    mov [di],'$'
+    popa
+    ret    
+endp
+
+; now codes related to matrix
+
+copyFromTempMatrix proc
+    pusha
+    lea si,tempMatrix
+    mov di,matrixAddress
+    mov cx,0
+newMatLoop:    
+    mov ax,[si]
+    mov [di],ax
+    inc si
+	inc si
+	inc di
+    inc di
+    inc cx
+    cmp cx,matrixSize
+    jne newMatLoop
+    popa
+    ret
+endp
+    
+    
+copyToTempMatrix proc
+    pusha
+    lea di,tempMatrix
+    mov si,matrixAddress
+    mov cx,0
+newMatLoop2:    
+    mov ax,[si]
+    mov [di],ax
+    inc si
+	inc si
+    inc di
+	inc di
+    inc cx
+    cmp cx,matrixSize
+    jne newMatLoop2
+    popa
+    ret
+endp
+          
+print_reg_asm proc
+cmp ax, 0
+jne  print_reg_asm_intr
+    push ax
+    mov al, '0'
+    mov ah, 0eh
+    int 10h
+    pop ax
+    ret 
+ print_reg_asm_intr:
+    pusha
+    mov dx, 0
+    cmp ax, 0
+    je  print_pop
+    mov bx, 10
+    div bx    
+    call  print_reg_asm_intr
+    mov ax, dx
+    add al, 30h
+    mov ah, 0eh
+    int 10h    
+    jmp  print_pop
+ print_pop:
+    popa  
+    ret  
+endp
+
+print_newLine proc 
+    push ax  
+    push dx  
+    mov ah, 2
+    mov dl, 0Dh
+    int 21h  
+    mov dl, 0Ah
+    int 21h   
+    pop dx 
+    pop ax      
+    ret
+endp
+		  
+copyMatTemp1Temp2 proc
+    pusha
+    lea di,tempMatrix2
+    lea si,tempMatrix
+    mov cx,0
+newMatLoop3:    
+    mov ax,[si]
+    mov [di],ax
+    inc si
+	inc si
+    inc di
+	inc di
+    inc cx
+    cmp cx,100
+    jne newMatLoop3
+    
+    popa
+    ret
+endp    
+
+addTemp1Temp2 proc
+    pusha
+    lea di,tempMatrix
+    lea si,tempMatrix2
+    mov cx,0
+newMatLoop4:    
+    mov ax,[si]
+    add [di],ax
+    inc si
+	inc si
+	inc di
+    inc di
+    inc cx
+    cmp cx,100
+    jne newMatLoop4
+    
+    popa
+    ret
+endp   
+
+subTemp1Temp2 proc
+    pusha
+    lea di,tempMatrix
+    lea si,tempMatrix2
+    mov cx,0
+newMatLoop5:    
+    mov ax,[si]
+    sub [di],ax
+    inc si
+	inc si
+	inc di
+    inc di
+    inc cx
+    cmp cx,100
+    jne newMatLoop5
+    
+    popa
+    ret
+endp

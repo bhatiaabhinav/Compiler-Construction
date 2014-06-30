@@ -1,0 +1,31 @@
+_main[]
+	int a,b;
+	a = 3;
+	b = 5;
+	function [int sum, int diff, int prod]= _calculator[int c, int d]
+		sum = c + d;
+		prod = c*d;
+		diff = c - d;
+
+	end;
+
+	function [int s] = _square[int u] 
+	    s = u*u; 
+	end; 
+	
+	function [int x] = _recursive[int u,int v] 
+	    int p,q,r; 
+	    p = u+v;
+	    q = u-v;
+	    x = _recursive(p,q);
+        end;
+
+	function [int s] = _square[int u] 
+	    s = u*u; 
+        end; 
+	a = _square(b);
+end;
+
+#Semantic errors
+# line 20 : recursive function definitions are not allowed
+# line 23 : function overloading is not allowed
