@@ -11,4 +11,5 @@ A language description was given for which we had to develop a compiler.
 
 We were the project toppers in our batch :) !!
 
-Problem description, methodology, etc. are given in project wiki.
+Problem Description: https://1drv.ms/u/s!ALnbBs9L5Io0zlM
+Language Specs: https://1drv.ms/b/s!ALnbBs9L5Io0zlQ
